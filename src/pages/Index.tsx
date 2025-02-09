@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+
+import { useRef, useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -183,7 +184,47 @@ const Index = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
   const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    // Clean up previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    // Create new intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const category = entry.target.getAttribute("data-category");
+            if (category) {
+              setActiveCategory(category);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px",
+        threshold: 0,
+      }
+    );
+
+    // Observe all category sections
+    Object.values(categoryRefs.current).forEach((ref) => {
+      if (ref) {
+        observerRef.current?.observe(ref);
+      }
+    });
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   const scrollToCategory = (category: string) => {
     setSelectedCategory(category);
@@ -222,7 +263,11 @@ const Index = () => {
         {categories.map((category) => (
           <Button
             key={category}
-            variant={selectedCategory === category ? "default" : "ghost"}
+            variant={
+              activeCategory === category
+                ? "default"
+                : "ghost"
+            }
             className="justify-start"
             onClick={() => scrollToCategory(category)}
           >
@@ -249,6 +294,7 @@ const Index = () => {
               <div
                 key={category}
                 ref={(el) => (categoryRefs.current[category] = el)}
+                data-category={category}
                 className="space-y-4"
               >
                 <h2 className="text-2xl font-semibold">{category}</h2>
