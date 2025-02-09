@@ -1,4 +1,3 @@
-
 import { useRef, useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -189,12 +188,10 @@ const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    // Clean up previous observer
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
 
-    // Create new intersection observer
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -212,7 +209,6 @@ const Index = () => {
       }
     );
 
-    // Observe all category sections
     Object.values(categoryRefs.current).forEach((ref) => {
       if (ref) {
         observerRef.current?.observe(ref);
@@ -263,12 +259,8 @@ const Index = () => {
         {categories.map((category) => (
           <Button
             key={category}
-            variant={
-              activeCategory === category
-                ? "default"
-                : "ghost"
-            }
-            className="justify-start"
+            variant={activeCategory === category ? "default" : "ghost"}
+            className="justify-start text-lg"
             onClick={() => scrollToCategory(category)}
           >
             {category}
@@ -282,7 +274,7 @@ const Index = () => {
           <Input
             type="text"
             placeholder="Search"
-            className="w-full pl-10 bg-gray-50"
+            className="w-full pl-10 bg-gray-50 text-lg"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -315,7 +307,7 @@ const Index = () => {
                           />
                         </div>
                         <div className="p-4">
-                          <h3 className="font-medium">{product.name}</h3>
+                          <h3 className="font-medium text-lg">{product.name}</h3>
                           <p className="text-sm text-gray-500 mt-1">
                             {product.description}
                           </p>
@@ -338,7 +330,7 @@ const Index = () => {
           <Input
             type="text"
             placeholder="Add order notes"
-            className="w-full bg-gray-50"
+            className="w-full bg-gray-50 text-lg"
           />
         </div>
         
@@ -352,7 +344,7 @@ const Index = () => {
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2">
                     <span>{item.quantity}x</span>
-                    <span className="font-medium">{item.name}</span>
+                    <span className="font-medium text-lg">{item.name}</span>
                   </div>
                   {item.description && (
                     <p className="text-sm text-gray-500 mt-1">
@@ -384,10 +376,10 @@ const Index = () => {
         </div>
 
         <div className="mt-6 flex gap-4">
-          <Button variant="outline" className="flex-1">
+          <Button variant="outline" className="flex-1 text-lg">
             Save
           </Button>
-          <Button className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black">
+          <Button className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black text-lg">
             Pay
           </Button>
         </div>
