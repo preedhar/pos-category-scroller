@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -58,6 +57,102 @@ const products: Product[] = [
     description: "Large • Marshmallows, Chocolate chips",
     image: "/placeholder.svg",
   },
+  {
+    id: "5",
+    name: "Greek Salad",
+    category: "Salads",
+    price: 10.99,
+    description: "Fresh • Feta, olives, cucumber",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "6",
+    name: "Quinoa Bowl",
+    category: "Salads",
+    price: 11.99,
+    description: "Healthy • Avocado, chickpeas",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "7",
+    name: "Coca Cola",
+    category: "Non-Alcoholic",
+    price: 2.99,
+    description: "500ml",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "8",
+    name: "Fresh Orange Juice",
+    category: "Non-Alcoholic",
+    price: 4.99,
+    description: "Freshly squeezed • 400ml",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "9",
+    name: "Iced Tea",
+    category: "Non-Alcoholic",
+    price: 3.99,
+    description: "Peach or Lemon • 500ml",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "10",
+    name: "Sourdough Bread",
+    category: "Baked Items",
+    price: 6.99,
+    description: "Fresh daily • Whole loaf",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "11",
+    name: "Croissant",
+    category: "Baked Items",
+    price: 3.99,
+    description: "Butter • Freshly baked",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "12",
+    name: "Tiramisu",
+    category: "Desserts",
+    price: 7.99,
+    description: "Classic • Coffee-soaked ladyfingers",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "13",
+    name: "Cheesecake",
+    category: "Desserts",
+    price: 8.99,
+    description: "New York style • Berry compote",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "14",
+    name: "Chardonnay",
+    category: "Wine",
+    price: 29.99,
+    description: "California • 2019",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "15",
+    name: "Cabernet Sauvignon",
+    category: "Wine",
+    price: 34.99,
+    description: "Napa Valley • 2018",
+    image: "/placeholder.svg",
+  },
+  {
+    id: "16",
+    name: "Pinot Noir",
+    category: "Wine",
+    price: 32.99,
+    description: "Oregon • 2020",
+    image: "/placeholder.svg",
+  }
 ];
 
 const Index = () => {
@@ -98,7 +193,6 @@ const Index = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Left Sidebar - Categories */}
       <div className="w-48 bg-white shadow-md p-4 flex flex-col gap-2">
         <h2 className="text-xl font-semibold mb-4">Menu</h2>
         {categories.map((category) => (
@@ -113,7 +207,6 @@ const Index = () => {
         ))}
       </div>
 
-      {/* Main Content - Products */}
       <div className="flex-1 p-6 overflow-hidden flex flex-col">
         <div className="relative mb-6">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -169,7 +262,6 @@ const Index = () => {
         </ScrollArea>
       </div>
 
-      {/* Right Sidebar - Cart */}
       <div className="w-80 bg-white shadow-md p-4 flex flex-col">
         <h2 className="text-xl font-semibold mb-4">New order</h2>
         <div className="mb-4">
